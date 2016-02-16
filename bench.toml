@@ -1,0 +1,88 @@
+[meta]
+name = "example benchmarks"
+author = "Adam Perry <adam.n.perry@gmail.com>"
+# omitting the start date will run on nightly builds since 2015-05-15 -- probably won't work
+start = "2015-09-01"
+# omitting the end date will run benchmarks on nightly builds through today's
+end = "2016-02-11"
+
+# here we run benchmarks against a specific commit of a github repo
+[benches.ahocorasick]
+repo = "https://github.com/BurntSushi/aho-corasick.git"
+commit = "fb83163c89e143f227e31d07a9373c405501d174"
+
+[benches.byteorder]
+repo = "https://github.com/BurntSushi/byteorder.git"
+commit = "37573b7636e37ea69bd486d840d38931cee10562"
+
+[benches.cbor]
+repo = "https://github.com/BurntSushi/rust-cbor.git"
+commit = "c4336891b37eab1b0e22edb2d8de8e946a7ccd5f"
+
+[benches.crc]
+repo = "https://github.com/mrhooray/crc-rs.git"
+commit = "84580452a41febe0197cda0abf7c008f0e485564"
+
+[benches.csv]
+repo = "https://github.com/BurntSushi/rust-csv.git"
+commit = "272b1284293da9c6dbe97f4e43f910eacd8141a1"
+
+[benches.hyper]
+repo = "https://github.com/hyperium/hyper.git"
+commit = "e8245aa7fb67ba767327fb709045f947979825ec"
+
+[benches.itertools]
+repo = "https://github.com/bluss/rust-itertools.git"
+commit = "9df502075955937ff3f4bd02dcb0cdd5161ba2d1"
+
+[benches.memchr]
+repo = "https://github.com/BurntSushi/rust-memchr.git"
+commit = "3cbe58910b0c25f26afb7f2af934730d64e48b61"
+
+[benches.nalgebra]
+repo = "https://github.com/sebcrozet/nalgebra.git"
+commit = "6bcf43563f333433acba2ae1e80df663be79293e"
+
+[benches.ndarray]
+repo = "https://github.com/bluss/rust-ndarray.git"
+commit = "e065cd53530c60d6741419c492a9bc462c0432ae"
+
+[benches.num]
+repo = "https://github.com/rust-num/num.git"
+commit = "838b4e42b37166e28d59e81d79295780748a6783"
+
+[benches.optional]
+repo = "https://github.com/llogiq/optional.git"
+commit = "9503684467040eb4f269711b181af5a15e6c49fc"
+
+[benches.permutohedron]
+repo = "https://github.com/bluss/permutohedron.git"
+commit = "1ee182141d24a62118109364c115d0aa640eb0f1"
+
+[benches.quickersort]
+repo = "https://github.com/notriddle/quickersort.git"
+commit = "6979ad646ff8363cf6d2efc6f3eedf6106f5cf97"
+
+[benches.rand]
+repo = "https://github.com/rust-lang-nursery/rand.git"
+commit = "8feb9df678990f91c39759f62c05f5ad5a6a78c8"
+
+[benches.rayon]
+repo = "https://github.com/nikomatsakis/rayon.git"
+commit = "e93997b61590396cac4bcfbf85b9a9a63e3a990a"
+
+[benches.regex]
+repo = "https://github.com/rust-lang-nursery/regex.git"
+commit = "f824afbffb7d5efb275d976c8213998f25d1caac"
+
+[benches.simd]
+repo = "https://github.com/huonw/simd.git"
+commit = "9d32d7671c8303c4420cb49e31df52c138a09543"
+
+[benches.suffix]
+repo = "https://github.com/BurntSushi/suffix"
+commit = "3fec6c6f5dc2779dd9f2eee9b4e0dfae5a1b9858"
+
+[benches.uuid]
+repo = "https://github.com/rust-lang-nursery/uuid.git"
+commit = "c68d89368736c13ce23f2dd38879d9db05d02201"
