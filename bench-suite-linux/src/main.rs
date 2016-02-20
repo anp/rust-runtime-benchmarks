@@ -1,8 +1,11 @@
 #![feature(test)]
 
 extern crate hwloc;
+#[macro_use] extern crate lazy_static;
 extern crate libc;
+extern crate num;
 extern crate rustc_serialize;
+extern crate serde_json;
 extern crate test;
 
 #[macro_use]
@@ -39,6 +42,16 @@ mod permutohedron_bench;
 extern crate rand;
 mod rand_bench;
 
+extern crate regex;
+extern crate regex_syntax;
+mod regex_bench;
+
+extern crate simd;
+mod simd_bench;
+
+extern crate suffix;
+mod suffix_bench;
+
 use hwloc::{Topology, CPUBIND_PROCESS, TopologyObject, ObjectType};
 use std::collections::BTreeMap;
 
@@ -58,8 +71,6 @@ fn main() {
     // Bind to one core.
     topo.set_cpubind_for_process(pid, cpuset, CPUBIND_PROCESS).unwrap();
 
-    println!("Process bound to core: {:?}", topo.get_cpubind_for_process(pid, CPUBIND_PROCESS).unwrap());
-
     let mut results = BTreeMap::new();
     //results.insert("cbor".to_string(), cbor_bench::run_all());
     //results.insert("crc".to_string(), crc_bench::run_all());
@@ -70,9 +81,12 @@ fn main() {
     //results.insert("ndarray".to_string(), ndarray_bench::run_all());
     //results.insert("optional".to_string(), optional_bench::run_all());
     //results.insert("permutohedron".to_string(), permutohedron_bench::run_all());
-    results.insert("rand".to_string(), rand_bench::run_all());
+    //results.insert("rand".to_string(), rand_bench::run_all());
+    //results.insert("regex".to_string(), regex_bench::run_all());
+    //results.insert("simd".to_string(), simd_bench::run_all());
+    results.insert("suffix".to_string(), suffix_bench::run_all());
 
-    println!("{:#?}", results);
+    println!("{}", serde_json::to_string_pretty(&results).unwrap());
 }
 
 /// Find the last core

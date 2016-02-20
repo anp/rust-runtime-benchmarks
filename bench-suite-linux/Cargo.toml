@@ -5,8 +5,11 @@ authors = ["Adam Perry <adam.n.perry@gmail.com>"]
 
 [dependencies]
 hwloc = "0.3.0"
+lazy_static = "0.1.15"
 libc = "0.2.7"
+num = "0.1.31"
 rustc-serialize = "0.3"
+serde_json = "0.6.0"
 # benchmark dependencies:
 cbor = "0.3.16"
 crc = "1.2.0"
@@ -18,3 +21,7 @@ ndarray = "0.4.0-alpha.3"
 optional = "0.0.12"
 permutohedron = "0.2.1"
 rand = "0.3.14"
+regex = "0.1.52"
+regex-syntax = "0.2.3"
+simd = { git = "https://github.com/huonw/simd", rev = "03de1cd0a278ab902b4beb402d57505f3797ea56" }
+suffix = "0.3.1"
