@@ -26,6 +26,9 @@ mod itertools_bench;
 extern crate memchr;
 mod memchr_bench;
 
+extern crate optional;
+mod optional_bench;
+
 #[macro_use(s)]
 extern crate ndarray;
 mod ndarray_bench;
@@ -58,7 +61,8 @@ fn main() {
     //results.insert("hyper".to_string(), hyper_bench::run_all());
     //results.insert("itertools".to_string(), itertools_bench::run_all());
     //results.insert("memchr".to_string(), memchr_bench::run_all());
-    results.insert("ndarray".to_string(), ndarray_bench::run_all());
+    //results.insert("ndarray".to_string(), ndarray_bench::run_all());
+    results.insert("optional".to_string(), optional_bench::run_all());
 
     println!("{:#?}", results);
 }

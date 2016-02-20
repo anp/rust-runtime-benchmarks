@@ -1,4 +1,3 @@
-#![feature(test)]
 #![allow(unused_imports)]
 
 use ndarray::{OwnedArray, zeros};
@@ -93,7 +92,7 @@ pub fn run_all() -> BTreeMap<String, Vec<u64>> {
 
 fn small_iter_1d() -> u64 {
     let a = arr1::<f32>(&[1., 2., 2., 3., 4., 4., 3., 4., 4., 3., 4., 4., 5., 6., 6.]);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         for &elt in a.iter() {
             black_box(elt);
         }
@@ -102,7 +101,7 @@ fn small_iter_1d() -> u64 {
 
 fn small_iter_1d_raw() -> u64 {
     let a = arr1::<f32>(&[1., 2., 2., 3., 4., 4., 3., 4., 4., 3., 4., 4., 5., 6., 6.]);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         for &elt in a.raw_data().iter() {
             black_box(elt);
         }
@@ -111,7 +110,7 @@ fn small_iter_1d_raw() -> u64 {
 
 fn small_iter_2d() -> u64 {
     let a = arr2::<f32, _>(&[[1., 2., 2.], [3., 4., 4.], [3., 4., 4.], [3., 4., 4.], [5., 6., 6.]]);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         for &elt in a.iter() {
             black_box(elt);
         }
@@ -121,7 +120,7 @@ fn small_iter_2d() -> u64 {
 fn sum_1d_regular() -> u64 {
     let a = OwnedArray::<i32, _>::zeros(64 * 64);
     let a = black_box(a);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         let mut sum = 0;
         for &elt in a.iter() {
             sum += elt;
@@ -134,7 +133,7 @@ fn sum_1d_raw() -> u64 {
     // this is autovectorized to death (= great performance)
     let a = OwnedArray::<i32, _>::zeros(64 * 64);
     let a = black_box(a);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         let mut sum = 0;
         for &elt in a.raw_data() {
             sum += elt;
@@ -146,7 +145,7 @@ fn sum_1d_raw() -> u64 {
 fn sum_2d_regular() -> u64 {
     let a = OwnedArray::<i32, _>::zeros((64, 64));
     let a = black_box(a);
-    bench!(100_000, {
+    bench!(10_000_000, {
         let mut sum = 0;
         for &elt in a.iter() {
             sum += elt;
@@ -158,7 +157,7 @@ fn sum_2d_regular() -> u64 {
 fn sum_2d_by_row() -> u64 {
     let a = OwnedArray::<i32, _>::zeros((64, 64));
     let a = black_box(a);
-    bench!(100_000, {
+    bench!(10_000_000, {
         let mut sum = 0;
         for row in a.inner_iter() {
             for &elt in row {
@@ -194,7 +193,7 @@ fn sum_2d_cutout_fold() -> u64 {
 fn scalar_sum_2d_regular() -> u64 {
     let a = OwnedArray::<i32, _>::zeros((64, 64));
     let a = black_box(a);
-    bench!(1_000_000, {
+    bench!(1_000_000_000, {
         a.scalar_sum()
     })
 }
@@ -203,7 +202,7 @@ fn scalar_sum_2d_cutout() -> u64 {
     let a = OwnedArray::<i32, _>::zeros((66, 66));
     let av = a.slice(s![1..-1, 1..-1]);
     let a = black_box(av);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a.scalar_sum()
     })
 }
@@ -269,7 +268,7 @@ fn sum_2d_transpose_by_row() -> u64 {
 fn scalar_sum_2d_float() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((64, 64));
     let a = black_box(a.view());
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a.scalar_sum()
     })
 }
@@ -278,7 +277,7 @@ fn scalar_sum_2d_float_cutout() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((66, 66));
     let av = a.slice(s![1..-1, 1..-1]);
     let a = black_box(av);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a.scalar_sum()
     })
 }
@@ -287,7 +286,7 @@ fn add_2d_regular() -> u64 {
     let mut a = OwnedArray::<i32, _>::zeros((64, 64));
     let b = OwnedArray::<i32, _>::zeros((64, 64));
     let bv = b.view();
-    bench!(100_000, {
+    bench!(10_000_000, {
         let _x = black_box(a.view_mut() + bv);
     })
 }
@@ -297,7 +296,7 @@ fn add_2d_cutout() -> u64 {
     let mut acut = a.slice_mut(s![1..-1, 1..-1]);
     let b = OwnedArray::<i32, _>::zeros((64, 64));
     let bv = b.view();
-    bench!(100_000, {
+    bench!(10_000_000, {
         let _x = black_box(acut.view_mut() + bv);
     })
 }
@@ -306,7 +305,7 @@ fn add_2d_broadcast_1_to_2() -> u64 {
     let mut a = OwnedArray::<i32, _>::zeros((64, 64));
     let b = OwnedArray::<i32, _>::zeros(64);
     let bv = b.view();
-    bench!(100_000, {
+    bench!(10_000_000, {
         let _x = black_box(a.view_mut() + bv);
     })
 }
@@ -315,7 +314,7 @@ fn add_2d_broadcast_0_to_2() -> u64 {
     let mut a = OwnedArray::<i32, _>::zeros((64, 64));
     let b = OwnedArray::<i32, _>::zeros(());
     let bv = b.view();
-    bench!(100_000, {
+    bench!(10_000_000, {
         let _x = black_box(a.view_mut() + bv);
     })
 }
@@ -324,7 +323,7 @@ fn add_2d_broadcast_0_to_2() -> u64 {
 fn add_2d_0_to_2_iadd_scalar() -> u64 {
     let mut a = OwnedArray::<i32, _>::zeros((64, 64));
     let n = black_box(0);
-    bench!(100_000, {
+    bench!(10_000_000, {
         a.iadd_scalar(&n);
     })
 }
@@ -343,7 +342,7 @@ fn add_2d_f32_regular() -> u64 {
     let mut a = OwnedArray::<f32, _>::zeros((64, 64));
     let b = OwnedArray::<f32, _>::zeros((64, 64));
     let bv = b.view();
-    bench!(100_000, {
+    bench!(10_000_000, {
         let _x = black_box(a.view_mut() + bv);
     })
 }
@@ -381,7 +380,7 @@ fn assign_scalar_2d_raw_large() -> u64 {
     let a = OwnedArray::zeros((64, 64));
     let mut a = black_box(a);
     let s = 3.;
-    bench!(100_000, {
+    bench!(10_000_000, {
         for elt in a.raw_data_mut() {
             *elt = s;
         }
@@ -390,7 +389,7 @@ fn assign_scalar_2d_raw_large() -> u64 {
 
 fn bench_iter_diag() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((1024, 1024));
-    bench!(100_000, {
+    bench!(10_000_000, {
         for elt in a.diag() {
             black_box(elt);
         }
@@ -400,7 +399,7 @@ fn bench_iter_diag() -> u64 {
 fn bench_row_iter() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((1024, 1024));
     let it = a.row(17);
-    bench!(100_000, {
+    bench!(10_000_000, {
         for elt in it.clone() {
             black_box(elt);
         }
@@ -410,7 +409,7 @@ fn bench_row_iter() -> u64 {
 fn bench_col_iter() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((1024, 1024));
     let it = a.column(17);
-    bench!(100_000, {
+    bench!(10_000_000, {
         for elt in it.clone() {
             black_box(elt);
         }
@@ -433,14 +432,14 @@ fn create_iter_4d() -> u64 {
     a.swap_axes(2, 1);
     let v = black_box(a.view());
 
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         v.into_iter()
     })
 }
 
 fn bench_to_owned_n() -> u64 {
     let a = zeros::<f32, _>((32, 32));
-    bench!(100_000, {
+    bench!(10_000_000, {
         a.to_owned()
     })
 }
@@ -456,7 +455,7 @@ fn bench_to_owned_t() -> u64 {
 fn equality_i32() -> u64 {
     let a = OwnedArray::<i32, _>::zeros((64, 64));
     let b = OwnedArray::<i32, _>::zeros((64, 64));
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a == b
     })
 }
@@ -464,7 +463,7 @@ fn equality_i32() -> u64 {
 fn equality_f32() -> u64 {
     let a = OwnedArray::<f32, _>::zeros((64, 64));
     let b = OwnedArray::<f32, _>::zeros((64, 64));
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a == b
     })
 }
@@ -472,7 +471,7 @@ fn equality_f32() -> u64 {
 fn dot() -> u64 {
     let a = OwnedArray::<f32, _>::zeros(256);
     let b = OwnedArray::<f32, _>::zeros(256);
-    bench!(100_000, {
+    bench!(1_000_000_000, {
         a.dot(&b)
     })
 }
