@@ -12,6 +12,7 @@ dependencies = [
  "memchr 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
  "ndarray 0.4.0-alpha.3 (registry+https://github.com/rust-lang/crates.io-index)",
  "optional 0.0.12 (registry+https://github.com/rust-lang/crates.io-index)",
+ "permutohedron 0.2.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.3.18 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -270,6 +271,11 @@ dependencies = [
 [[package]]
 name = "optional"
 version = "0.0.12"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "permutohedron"
+version = "0.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]

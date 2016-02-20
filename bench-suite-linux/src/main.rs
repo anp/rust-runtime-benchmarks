@@ -29,6 +29,9 @@ mod memchr_bench;
 extern crate optional;
 mod optional_bench;
 
+extern crate permutohedron;
+mod permutohedron_bench;
+
 #[macro_use(s)]
 extern crate ndarray;
 mod ndarray_bench;
@@ -62,7 +65,8 @@ fn main() {
     //results.insert("itertools".to_string(), itertools_bench::run_all());
     //results.insert("memchr".to_string(), memchr_bench::run_all());
     //results.insert("ndarray".to_string(), ndarray_bench::run_all());
-    results.insert("optional".to_string(), optional_bench::run_all());
+    //results.insert("optional".to_string(), optional_bench::run_all());
+    results.insert("permutohedron".to_string(), permutohedron_bench::run_all());
 
     println!("{:#?}", results);
 }
