@@ -22,6 +22,7 @@ dependencies = [
  "serde_json 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "simd 0.1.0 (git+https://github.com/huonw/simd?rev=03de1cd0a278ab902b4beb402d57505f3797ea56)",
  "suffix 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "uuid 0.1.18 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]

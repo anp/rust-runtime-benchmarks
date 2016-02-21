@@ -52,6 +52,9 @@ mod simd_bench;
 extern crate suffix;
 mod suffix_bench;
 
+extern crate uuid;
+mod uuid_bench;
+
 use hwloc::{Topology, CPUBIND_PROCESS, TopologyObject, ObjectType};
 use std::collections::BTreeMap;
 
@@ -72,21 +75,22 @@ fn main() {
     topo.set_cpubind_for_process(pid, cpuset, CPUBIND_PROCESS).unwrap();
 
     let mut results = BTreeMap::new();
-    //results.insert("cbor".to_string(), cbor_bench::run_all());
-    //results.insert("crc".to_string(), crc_bench::run_all());
-    //results.insert("csv".to_string(), csv_bench::run_all());
-    //results.insert("hyper".to_string(), hyper_bench::run_all());
-    //results.insert("itertools".to_string(), itertools_bench::run_all());
-    //results.insert("memchr".to_string(), memchr_bench::run_all());
-    //results.insert("ndarray".to_string(), ndarray_bench::run_all());
-    //results.insert("optional".to_string(), optional_bench::run_all());
-    //results.insert("permutohedron".to_string(), permutohedron_bench::run_all());
-    //results.insert("rand".to_string(), rand_bench::run_all());
-    //results.insert("regex".to_string(), regex_bench::run_all());
-    //results.insert("simd".to_string(), simd_bench::run_all());
+    results.insert("cbor".to_string(), cbor_bench::run_all());
+    results.insert("crc".to_string(), crc_bench::run_all());
+    results.insert("csv".to_string(), csv_bench::run_all());
+    results.insert("hyper".to_string(), hyper_bench::run_all());
+    results.insert("itertools".to_string(), itertools_bench::run_all());
+    results.insert("memchr".to_string(), memchr_bench::run_all());
+    results.insert("ndarray".to_string(), ndarray_bench::run_all());
+    results.insert("optional".to_string(), optional_bench::run_all());
+    results.insert("permutohedron".to_string(), permutohedron_bench::run_all());
+    results.insert("rand".to_string(), rand_bench::run_all());
+    results.insert("regex".to_string(), regex_bench::run_all());
+    results.insert("simd".to_string(), simd_bench::run_all());
     results.insert("suffix".to_string(), suffix_bench::run_all());
+    results.insert("uuid".to_string(), uuid_bench::run_all());
 
-    println!("{}", serde_json::to_string_pretty(&results).unwrap());
+    println!("{}", serde_json::to_string(&results).unwrap());
 }
 
 /// Find the last core

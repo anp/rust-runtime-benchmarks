@@ -25,3 +25,4 @@ regex = "0.1.52"
 regex-syntax = "0.2.3"
 simd = { git = "https://github.com/huonw/simd", rev = "03de1cd0a278ab902b4beb402d57505f3797ea56" }
 suffix = "0.3.1"
+uuid = "0.1.18"
