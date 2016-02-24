@@ -19,7 +19,7 @@ impl MockStream {
     fn new() -> MockStream {
         let head = b"HTTP/1.1 200 OK\r\nServer: Mock\r\n\r\n";
         let mut res = head.to_vec();
-        res.extend_from_slice(README);
+        res.extend(README);
         MockStream {
             read: Cursor::new(res)
         }

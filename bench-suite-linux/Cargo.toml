@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Adam Perry <adam.n.perry@gmail.com>"]
 
 [dependencies]
-hwloc = "0.3.0"
+nix = "0.4.2"
 lazy_static = "0.1.15"
 libc = "0.2.7"
 num = "0.1.31"
@@ -14,15 +14,14 @@ serde_json = "0.6.0"
 cbor = "0.3.16"
 crc = "1.2.0"
 csv = "0.14.3"
-hyper = "0.7.2"
 itertools = "0.4.8"
 memchr = "0.1.10"
-ndarray = "0.4.0-alpha.3"
+#ndarray = "0.3.1"
 optional = "0.0.12"
 permutohedron = "0.2.1"
 rand = "0.3.14"
 regex = "0.1.52"
 regex-syntax = "0.2.3"
-simd = { git = "https://github.com/huonw/simd", rev = "03de1cd0a278ab902b4beb402d57505f3797ea56" }
+#simd = { git = "https://github.com/huonw/simd", rev = "03de1cd0a278ab902b4beb402d57505f3797ea56" }
 suffix = "0.3.1"
 uuid = "0.1.18"
