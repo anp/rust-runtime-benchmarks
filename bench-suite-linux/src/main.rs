@@ -86,7 +86,7 @@ fn main() {
             "regex" => results.insert("regex".to_string(), regex_bench::run_all()),
             "suffix" => results.insert("suffix".to_string(), suffix_bench::run_all()),
             "uuid" => results.insert("uuid".to_string(), uuid_bench::run_all()),
-            _ => panic!("invalid benchmark selected"),
+            _ => panic!("invalid benchmark selected: {}", arg),
         };
     }
 

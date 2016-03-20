@@ -6,7 +6,7 @@ import subprocess as sp
 
 FORMAT = '%Y-%m-%d'
 
-current = dt.datetime(2015, 8, 20)
+current = dt.datetime(2015, 9, 15)
 print('start:', current.strftime(FORMAT))
 
 end = dt.datetime(2016, 3, 15)
@@ -32,7 +32,7 @@ while current <= end:
         continue
 
     print('building benches on', toolchain_str)
-    cmd = ['cargo', 'clean']
+    cmd = ['multirust', 'run', toolchain_str, 'cargo', 'clean']
     sp.run(cmd)
 
     cmd = ['multirust', 'run', toolchain_str, 'cargo', 'build', '--release']
@@ -47,17 +47,17 @@ while current <= end:
         continue
 
     print('running benches for', date_str)
-    benches = ['cbor'
-               'crc',
-               'csv',
-               'itertools',
-               'memchr',
-               'optional',
-               'permutohedron',
-               'rand',
-               'regex',
-               'suffix',
-               'uuid']
+    benches = ["cbor",
+               "crc",
+               "csv",
+               "itertools",
+               "memchr",
+               "optional",
+               "permutohedron",
+               "rand",
+               "regex",
+               "suffix",
+               "uuid"]
 
     for b in benches:
         cmd = ['perf', 'stat', '-x,', 'target/release/bench-suite-linux', b]
